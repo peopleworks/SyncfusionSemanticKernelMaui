@@ -57,9 +57,36 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="Microsoft.SemanticKernel" Version="1.26.0" />
+		<PackageReference Include="Microsoft.SemanticKernel.Connectors.Google" Version="1.26.0-alpha" />
+		<PackageReference Include="Microsoft.SemanticKernel.Connectors.Ollama" Version="1.26.0-alpha" />
+		<PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
+		<PackageReference Include="Syncfusion.Maui.AIAssistView" Version="27.1.57" />
+		<PackageReference Include="Syncfusion.Maui.Backdrop" Version="27.1.57" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="27.1.57" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\MainPage.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\MainPage.xaml.cs">
+	    <DependentUpon>MainPage.xaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Properties\AppSettings.json" />
+	  <EmbeddedResource Include="Properties\AppSettings.json" />
 	</ItemGroup>
 
 </Project>
