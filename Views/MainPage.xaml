@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<aiAssistView:SfBackdropPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                        xmlns:aiAssistView="http://schemas.syncfusion.com/maui"
+                        xmlns:viewModels="clr-namespace:SyncfusionSemanticKernelMaui.ViewModels"
+                        xmlns:views="clr-namespace:SyncfusionSemanticKernelMaui.Views"
+                        xmlns:models="clr-namespace:SyncfusionSemanticKernelMaui.Models"
+                        x:Class="SyncfusionSemanticKernelMaui.MainPage"
+                        x:DataType="viewModels:MainViewModel"
+                        Title="Menu"
+                        IsBackLayerRevealed="{Binding ShowBackLayer,Mode=TwoWay}">
+    <aiAssistView:SfBackdropPage.BackLayer >
+        <aiAssistView:BackdropBackLayer BackgroundColor="#3C3D37">
+            <Grid>
+                <CollectionView ItemsSource="{Binding Providers}"
+                                SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Provider">
+                            <Grid ColumnDefinitions="Auto,*" 
+                                    RowDefinitions="Auto,1"
+                                  Padding="10">
+                              <Image  />
+                                <Label Text="{Binding Name}" 
+                                       Grid.Column="1"
+                                       FontFamily="24"
+                                      TextColor="White"
+                                       FontAttributes="Bold"/>
+                                   <Line Grid.Row="1" BackgroundColor="White" />
+                              <Grid.GestureRecognizers>
+                                  <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel }},Path=SelectedCommand}"
+                                                        CommandParameter="{Binding .}"/>
+                              </Grid.GestureRecognizers>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </aiAssistView:BackdropBackLayer>
+    </aiAssistView:SfBackdropPage.BackLayer>
+    <aiAssistView:SfBackdropPage.FrontLayer>
+        <aiAssistView:BackdropFrontLayer BackgroundColor="White"  LeftCornerRadius="30" RightCornerRadius="30" EdgeShape="Curve" >
+            <views:AIChatView />
+        </aiAssistView:BackdropFrontLayer>
+    </aiAssistView:SfBackdropPage.FrontLayer>
+</aiAssistView:SfBackdropPage>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:aiAssistView="clr-namespace:Syncfusion.Maui.AIAssistView;assembly=Syncfusion.Maui.AIAssistView"
+             xmlns:viewModels="clr-namespace:SyncfusionSemanticKernelMaui.ViewModels"
+             xmlns:themes="clr-namespace:Syncfusion.Maui.Themes;assembly=Syncfusion.Maui.Core"
+             x:Class="SyncfusionSemanticKernelMaui.Views.AIChatView"
+             x:DataType="viewModels:MainViewModel">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                 <themes:SyncfusionThemeDictionary>
+                    <themes:SyncfusionThemeDictionary.MergedDictionaries>
+                        <ResourceDictionary>
+                        
+                            <x:String x:Key="SfAIAssistViewTheme">CustomTheme</x:String>
+                            <Color x:Key="SfAIAssistViewInputViewBackground">White</Color>
+                            <x:String x:Key="SfAIAssistViewRequestItemFontFamily">Roboto-Medium</x:String>
+                            <FontAttributes x:Key="SfAIAssistViewRequestItemFontAttributes">Italic</FontAttributes>
+                            <x:Double x:Key="SfAIAssistViewRequestItemFontSize">16</x:Double>
+                            <x:String x:Key="SfAIAssistViewRequestItemAuthorFontFamily">Roboto-Medium</x:String>
+                            <FontAttributes x:Key="SfAIAssistViewRequestItemAuthorFontAttributes">Italic</FontAttributes>
+                            <x:Double x:Key="SfAIAssistViewRequestItemAuthorFontSize">16</x:Double>
+                            <Color x:Key="SfAIAssistViewEditorPlaceholderTextColor">Gray</Color>
+                            <Color x:Key="SfAIAssistViewEditorTextColor">Black</Color>
+                            <Color x:Key="SfAIAssistViewEditorBackground">White</Color>
+                            <Color x:Key="SfAIAssistViewEditorStroke">Gray</Color>
+                            <x:String x:Key="SfAIAssistViewEditorFontFamily">Roboto-Medium</x:String>
+                            <FontAttributes x:Key="SfAIAssistViewEditorFontAttributes">Bold</FontAttributes>
+                            <x:Double x:Key="SfAIAssistViewEditorFontSize">16</x:Double>
+                            <Color x:Key="SfAIAssistViewDisabledSendButtonIconColor">Purple</Color>
+                            <Color x:Key="SfAIAssistViewDisabledSendButtonColor">White</Color>
+                        </ResourceDictionary>
+                    </themes:SyncfusionThemeDictionary.MergedDictionaries>
+                </themes:SyncfusionThemeDictionary>
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate x:Key="headerTemplate">
+                <Grid RowDefinitions="45,30,Auto" RowSpacing="10" Padding="0,18,0,0">
+                    <Image  Source="{Binding Provider.Icon,Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel }}}" HorizontalOptions="Center"/>                 
+                    <Label Padding="0,5,0,0" Text="{Binding Provider.Name,Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel }},StringFormat='{0}, Ask AI Anything!'}"
+                           TextColor="Black"
+                           HorizontalOptions="Center" 
+                           Grid.Row="1" FontSize="16"/>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <aiAssistView:SfAIAssistView AssistItems="{Binding AssistItems,Source={RelativeSource AncestorType={x:Type viewModels:MainViewModel }},Mode=TwoWay}" 
+                                ShowHeader="True"
+                                RequestCommand="{Binding AssistViewRequestCommand}"
+                                 HeaderTemplate="{StaticResource headerTemplate}">
+        
+    </aiAssistView:SfAIAssistView>
+</ContentView>
